@@ -51,41 +51,187 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: { title: '首页', icon: 'dashboard' }
     }]
   },
 
   {
-    path: '/example',
+    path: '/custom',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
+    redirect: '/custom/customer/list/index',
+    name: 'custom',
+    meta: { title: '客户管理', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: '/customer',
+        name: 'customer',
+        component: () => import('@/views/custom/customer/index'),
+        meta: { title: '客户档案', icon: 'table' },
+       
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'customEdit',
+        name: 'customEdit',
+        hidden:true,
+        component: () => import('@/views/custom/customer/edit'),
+        meta: { title: '客户档案', icon: 'table' },
+       
+      },
+     
+          {
+            path: 'thirdParty',
+            name: 'thirdParty',
+            component: () => import('@/views/custom/thirdParty/index'),
+            meta: { title: '第三方客户', icon: 'table' },
+          },
+          {
+            path: 'thirdPartyEdit',
+            name: 'thirdPartyEdit',
+            hidden:true,
+            component: () => import('@/views/custom/thirdParty/edit'),
+            meta: { title: '编辑', icon: 'table' },
+          }
+
+        ]
+      },
+
+  {
+    path: '/projectManage',
+    component: Layout,
+    meta: { title: '项目管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'archives',
+        name: 'archives',
+        component: () => import('@/views/projectManage/archives/index'),
+        meta: { title: '项目档案', icon: 'form' }
+      },
+      {
+        path: 'archivesEdit',
+        name: 'archivesEdit',
+        hidden:true,
+        component: () => import('@/views/projectManage/archives/edit'),
+        meta: { title: '项目档案编辑', icon: 'form' }
+      },
+      {
+        path: 'external',
+        name: 'external',
+        component: () => import('@/views/projectManage/external/index'),
+        meta: { title: '外部项目', icon: 'form' }
+      },
+      {
+        path: 'externalEdit',
+        name: 'externalEdit',
+        hidden:true,
+        component: () => import('@/views/projectManage/external/edit'),
+        meta: { title: '外部项目编辑', icon: 'form' }
+      },
+      {
+        path: 'country',
+        name: 'country',
+        component: () => import('@/views/projectManage/country/index'),
+        meta: { title: '国家项目', icon: 'form' }
+      },
+      {
+        path: 'countryEdit',
+        name: 'countryEdit',
+        hidden:true,
+        component: () => import('@/views/projectManage/country/edit'),
+        meta: { title: '国家项目编辑', icon: 'form' }
+      },
+
+      {
+        path: 'provincial',
+        name: 'provincial',
+        component: () => import('@/views/projectManage/provincial/index'),
+        meta: { title: '省级项目', icon: 'form' }
+      },
+      {
+        path: 'provincialEdit',
+        name: 'provincialEdit',
+        hidden:true,
+        component: () => import('@/views/projectManage/provincial/edit'),
+        meta: { title: '省级项目编辑', icon: 'form' }
+      },
+      
+      
+    ]
+  },
+
+
+  {
+    path: '/meetings',
+    component: Layout,
+    meta: { title: '会议管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'meetingArch',
+        name: 'meetingArch',
+        component: () => import('@/views/meetings/meetingArch'),
+        meta: { title: '项目档案', icon: 'form' }
+      },
+      {
+        path: 'analysisReport',
+        name: 'analysisReport',
+        component: () => import('@/views/meetings/analysisReport'),
+        meta: { title: '分析报告', icon: 'form' }
+      },
+      {
+        path: 'case',
+        name: 'case',
+        component: () => import('@/views/meetings/case'),
+        meta: { title: '案例复盘', icon: 'form' }
       }
     ]
   },
 
+
   {
-    path: '/form',
+    path: '/statistics',
     component: Layout,
+    meta: { title: '数据统计表', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        path: 'meetingArch',
+        name: 'meetingArch',
+        component: () => import('@/views/statistics/area'),
+        meta: { title: '区域数据', icon: 'form' }
+      },
+      {
+        path: 'intelligence',
+        name: 'intelligence',
+        component: () => import('@/views/statistics/intelligence'),
+        meta: { title: '情报数据', icon: 'form' }
+      },
+     
+    ]
+  },
+
+
+
+
+  {
+    path: '/roles',
+    component: Layout,
+    redirect: '/roles/user',
+    name: '权限管理',
+    meta: {
+      title: '权限管理',
+      icon: 'nested'
+    },
+    children: [
+      {
+        path: 'userManage',
+        component: () => import('@/views/roles/userManage'), // Parent router-view
+        name: 'userManage',
+        meta: { title: '用户管理' },
+       
+      },
+      {
+        path: 'roleManage',
+        component: () => import('@/views/roles/roleManage'),
+        name: 'roleManage',
+        meta: { title: '角色管理'}
       }
     ]
   },
@@ -149,16 +295,6 @@ export const constantRoutes = [
     ]
   },
 
-  {
-    path: 'external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
-      }
-    ]
-  },
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
